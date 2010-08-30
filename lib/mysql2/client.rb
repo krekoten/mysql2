@@ -26,7 +26,7 @@ module Mysql2
       ssl_set(*opts.values_at(:sslkey, :sslcert, :sslca, :sslcapath, :sslciper))
 
       user     = opts[:username]
-      pass     = opts[:password]
+      pass     = opts[:password] ? opts[:password].to_s : nil
       host     = opts[:host] || 'localhost'
       port     = opts[:port] || 3306
       database = opts[:database]

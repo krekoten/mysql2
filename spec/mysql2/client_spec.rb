@@ -13,6 +13,12 @@ describe Mysql2::Client do
       }.should raise_error(Mysql2::Error)
     end
   end
+  
+  it 'should convert password to string' do
+    lambda do
+      client = Mysql2::Client.new(:password => 12345)
+    end.should_not raise_error(TypeError, "can't convert Fixnum into String")
+  end
 
   it "should accept connect flags and pass them to #connect" do
     klient = Class.new(Mysql2::Client) do
